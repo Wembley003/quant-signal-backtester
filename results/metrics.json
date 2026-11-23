@@ -1,0 +1,214 @@
+{
+  "full_period": {
+    "strategy": {
+      "total_return": 4.416569784446673,
+      "cagr": 0.08783465492546916,
+      "ann_volatility": 0.13851064002995364,
+      "sharpe_ratio": 0.6774133394850768,
+      "max_drawdown": 0.337172769363818,
+      "num_trades": 11,
+      "closed_trades": 10,
+      "hit_rate": 0.8,
+      "avg_win": 0.2613616434775573,
+      "avg_loss": -0.07401834920361022,
+      "profit_factor": 14.124154147702038,
+      "n_days": 5057,
+      "years": 20.067460317460316
+    },
+    "buy_and_hold": {
+      "total_return": 6.954590070187814,
+      "cagr": 0.10886713243173007,
+      "ann_volatility": 0.193526626927998,
+      "sharpe_ratio": 0.630909195645747,
+      "max_drawdown": 0.5518944036905847,
+      "num_trades": 0,
+      "closed_trades": 0,
+      "hit_rate": null,
+      "avg_win": null,
+      "avg_loss": null,
+      "profit_factor": null,
+      "n_days": 5057,
+      "years": 20.067460317460316
+    }
+  },
+  "in_sample": {
+    "strategy": {
+      "total_return": 1.4994342172713004,
+      "cagr": 0.10471722703471653,
+      "ann_volatility": 0.12387499405543657,
+      "sharpe_ratio": 0.8661805574651295,
+      "max_drawdown": 0.17308091939558146,
+      "num_trades": 5,
+      "closed_trades": 4,
+      "hit_rate": 1.0,
+      "avg_win": 0.10960897475907999,
+      "avg_loss": null,
+      "profit_factor": null,
+      "n_days": 2318,
+      "years": 9.198412698412698
+    },
+    "buy_and_hold": {
+      "total_return": 1.086814339813572,
+      "cagr": 0.08325946863974831,
+      "ann_volatility": 0.20993879025865306,
+      "sharpe_ratio": 0.4858281037905813,
+      "max_drawdown": 0.5518944036905847,
+      "num_trades": 0,
+      "closed_trades": 0,
+      "hit_rate": null,
+      "avg_win": null,
+      "avg_loss": null,
+      "profit_factor": null,
+      "n_days": 2318,
+      "years": 9.198412698412698
+    }
+  },
+  "out_of_sample": {
+    "strategy": {
+      "total_return": 1.2589889336434794,
+      "cagr": 0.08420832541827439,
+      "ann_volatility": 0.15054819086983645,
+      "sharpe_ratio": 0.6126962559630579,
+      "max_drawdown": 0.3371727693638178,
+      "num_trades": 6,
+      "closed_trades": 5,
+      "hit_rate": 0.6,
+      "avg_win": 0.3537180009522922,
+      "avg_loss": -0.07401834920360995,
+      "profit_factor": 7.168182040495461,
+      "n_days": 2540,
+      "years": 10.079365079365079
+    },
+    "buy_and_hold": {
+      "total_return": 2.798948073061111,
+      "cagr": 0.14158934827242353,
+      "ann_volatility": 0.1801186596351151,
+      "sharpe_ratio": 0.8256656221614715,
+      "max_drawdown": 0.3371727693638181,
+      "num_trades": 0,
+      "closed_trades": 0,
+      "hit_rate": null,
+      "avg_win": null,
+      "avg_loss": null,
+      "profit_factor": null,
+      "n_days": 2540,
+      "years": 10.079365079365079
+    }
+  },
+  "walk_forward": [
+    {
+      "window": {
+        "train_start": "2005-01-01",
+        "train_end": "2012-12-31",
+        "test_start": "2013-01-01",
+        "test_end": "2016-12-31"
+      },
+      "strategy": {
+        "total_return": 0.1638697069306727,
+        "cagr": 0.04840461603280355,
+        "ann_volatility": 0.11475547112576605,
+        "sharpe_ratio": 0.46942147703052717,
+        "max_drawdown": 0.195019797484,
+        "num_trades": 3,
+        "closed_trades": 2,
+        "hit_rate": 0.5,
+        "avg_win": 0.17350197955608548,
+        "avg_loss": -0.08176371553962603,
+        "profit_factor": 2.1219923582362075,
+        "n_days": 809,
+        "years": 3.2103174603174605
+      },
+      "buy_and_hold": {
+        "total_return": 0.3883032769288064,
+        "cagr": 0.1076007934932317,
+        "ann_volatility": 0.13089946432366042,
+        "sharpe_ratio": 0.8463578466609409,
+        "max_drawdown": 0.130229280232382,
+        "num_trades": 0,
+        "closed_trades": 0,
+        "hit_rate": null,
+        "avg_win": null,
+        "avg_loss": null,
+        "profit_factor": null,
+        "n_days": 809,
+        "years": 3.2103174603174605
+      }
+    },
+    {
+      "window": {
+        "train_start": "2005-01-01",
+        "train_end": "2016-12-31",
+        "test_start": "2017-01-01",
+        "test_end": "2020-12-31"
+      },
+      "strategy": {
+        "total_return": 0.1711588480647641,
+        "cagr": 0.050509486063113895,
+        "ann_volatility": 0.19584266832406594,
+        "sharpe_ratio": 0.35045159921262653,
+        "max_drawdown": 0.3371727693638181,
+        "num_trades": 3,
+        "closed_trades": 2,
+        "hit_rate": 0.5,
+        "avg_win": 0.055961366774373245,
+        "avg_loss": -0.06627298286759342,
+        "profit_factor": 0.8444069416066314,
+        "n_days": 808,
+        "years": 3.2063492063492065
+      },
+      "buy_and_hold": {
+        "total_return": 0.5558258358987498,
+        "cagr": 0.14780739438328605,
+        "ann_volatility": 0.22132898630850345,
+        "sharpe_ratio": 0.7343942523878424,
+        "max_drawdown": 0.33717276936381824,
+        "num_trades": 0,
+        "closed_trades": 0,
+        "hit_rate": null,
+        "avg_win": null,
+        "avg_loss": null,
+        "profit_factor": null,
+        "n_days": 808,
+        "years": 3.2063492063492065
+      }
+    },
+    {
+      "window": {
+        "train_start": "2005-01-01",
+        "train_end": "2020-12-31",
+        "test_start": "2021-01-01",
+        "test_end": "2025-11-20"
+      },
+      "strategy": {
+        "total_return": 0.3863499074648429,
+        "cagr": 0.08328910002786971,
+        "ann_volatility": 0.13665400042809225,
+        "sharpe_ratio": 0.6534572936741484,
+        "max_drawdown": 0.1875522908467665,
+        "num_trades": 3,
+        "closed_trades": 2,
+        "hit_rate": 0.5,
+        "avg_win": 0.33672125072235093,
+        "avg_loss": -0.024397160511750005,
+        "profit_factor": 13.801657392063367,
+        "n_days": 1029,
+        "years": 4.083333333333333
+      },
+      "buy_and_hold": {
+        "total_return": 0.54346204393047,
+        "cagr": 0.11214720426065528,
+        "ann_volatility": 0.1797588451794395,
+        "sharpe_ratio": 0.6810041533800872,
+        "max_drawdown": 0.24496414411668654,
+        "num_trades": 0,
+        "closed_trades": 0,
+        "hit_rate": null,
+        "avg_win": null,
+        "avg_loss": null,
+        "profit_factor": null,
+        "n_days": 1029,
+        "years": 4.083333333333333
+      }
+    }
+  ]
+}
