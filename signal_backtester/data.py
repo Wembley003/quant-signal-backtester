@@ -1,4 +1,6 @@
-"""Price data: download from Yahoo Finance with a local CSV cache.
+"""
+Layer: Queries & analysis — prices as they arrive: download and local cache (data access).
+Price data: download from Yahoo Finance with a local CSV cache.
 
 The cache is the source of truth for reproducibility: once downloaded,
 every run uses the same file unless ``force_refresh=True``. If the

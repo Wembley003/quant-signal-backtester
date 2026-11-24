@@ -1,4 +1,6 @@
-"""Walk-forward / out-of-sample validation.
+"""
+Layer: Queries & analysis — in-sample/out-of-sample and walk-forward checks.
+Walk-forward / out-of-sample validation.
 
 The honest way to read these results: the crossover rule has no fitted
 parameters (50 and 200 are the standard windows, chosen before looking

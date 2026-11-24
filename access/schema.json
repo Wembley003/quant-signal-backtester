@@ -1,0 +1,210 @@
+{
+  "tables": [
+    {
+      "name": "backtests",
+      "rows": 1,
+      "columns": [
+        {
+          "name": "id",
+          "type": "LONG"
+        },
+        {
+          "name": "created_at",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "ticker",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "strategy",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "fast",
+          "type": "LONG"
+        },
+        {
+          "name": "slow",
+          "type": "LONG"
+        },
+        {
+          "name": "commission_bps",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "slippage_bps",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "start_date",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "end_date",
+          "type": "TEXT",
+          "length": 50
+        }
+      ],
+      "csv": "/home/hatch/workspace/quant-projects/signal-backtester/access/csv/backtests.csv"
+    },
+    {
+      "name": "metrics",
+      "rows": 2,
+      "columns": [
+        {
+          "name": "id",
+          "type": "LONG"
+        },
+        {
+          "name": "backtest_id",
+          "type": "LONG"
+        },
+        {
+          "name": "scope",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "side",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "total_return",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "cagr",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "ann_volatility",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "sharpe_ratio",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "max_drawdown",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "num_trades",
+          "type": "LONG"
+        },
+        {
+          "name": "closed_trades",
+          "type": "LONG"
+        },
+        {
+          "name": "hit_rate",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "avg_win",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "avg_loss",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "profit_factor",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "n_days",
+          "type": "LONG"
+        },
+        {
+          "name": "years",
+          "type": "DOUBLE"
+        }
+      ],
+      "csv": "/home/hatch/workspace/quant-projects/signal-backtester/access/csv/metrics.csv"
+    },
+    {
+      "name": "trades",
+      "rows": 11,
+      "columns": [
+        {
+          "name": "id",
+          "type": "LONG"
+        },
+        {
+          "name": "backtest_id",
+          "type": "LONG"
+        },
+        {
+          "name": "trade_no",
+          "type": "LONG"
+        },
+        {
+          "name": "entry_date",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "exit_date",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "return_",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "open",
+          "type": "LONG"
+        }
+      ],
+      "csv": "/home/hatch/workspace/quant-projects/signal-backtester/access/csv/trades.csv"
+    },
+    {
+      "name": "equity_daily",
+      "rows": 5057,
+      "columns": [
+        {
+          "name": "id",
+          "type": "LONG"
+        },
+        {
+          "name": "backtest_id",
+          "type": "LONG"
+        },
+        {
+          "name": "date",
+          "type": "TEXT",
+          "length": 50
+        },
+        {
+          "name": "equity",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "benchmark",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "position",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "signal",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "daily_return",
+          "type": "DOUBLE"
+        }
+      ],
+      "csv": "/home/hatch/workspace/quant-projects/signal-backtester/access/csv/equity_daily.csv"
+    }
+  ]
+}

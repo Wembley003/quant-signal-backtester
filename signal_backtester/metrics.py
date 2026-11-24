@@ -1,4 +1,6 @@
-"""Performance metrics for a backtest.
+"""
+Layer: Queries & analysis — the numbers that summarize a backtest.
+Performance metrics for a backtest.
 
 All annualized figures use 252 trading days per year. The Sharpe ratio
 uses a zero risk-free rate (cash earns nothing in this backtest), which

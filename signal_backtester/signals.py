@@ -1,4 +1,6 @@
-"""The signal under study: dual moving-average crossover (trend/momentum).
+"""
+Layer: Business rules — the 50/200 rule computed on the prices.
+The signal under study: dual moving-average crossover (trend/momentum).
 
 Hypothesis
 ----------

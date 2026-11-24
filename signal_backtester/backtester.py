@@ -1,4 +1,6 @@
-"""Long-only backtester with transaction costs and slippage.
+"""
+Layer: Business rules — the backtest itself, costs included.
+Long-only backtester with transaction costs and slippage.
 
 Execution convention (no look-ahead)
 -------------------------------------

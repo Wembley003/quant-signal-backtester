@@ -1,0 +1,2 @@
+id,created_at,ticker,strategy,fast,slow,commission_bps,slippage_bps,start_date,end_date
+1,2026-11-24T03:12:16.576655+00:00,SPY,sma_crossover_50_200,50,200,5.0,5.0,2005-10-17,2025-11-20

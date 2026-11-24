@@ -12,3 +12,12 @@ dist/
 .DS_Store
 .idea/
 .vscode/
+
+# Salidas locales de persistencia/exportación (no van a Git)
+*.db
+*.sqlite
+*.xlsx
+
+# Toolchain de Access (jars descargados y clases compiladas; el .accdb y los CSV/schema SÍ van a Git)
+access/lib/
+access/build/

@@ -140,10 +140,94 @@ market results.
 pytest
 ```
 
-24 tests, all passing. They check the signal on rising/falling/flat
+39 tests, all passing. They check the signal on rising/falling/flat
 series, the no-look-ahead property, the backtester against
 hand-computed equity curves and trade returns, the metrics against
 known values, the cached data file, and the walk-forward split logic.
+The layer tests in `tests/test_layers.py` check the chain (data →
+signal → backtest → metrics) and that the layers do not mix: the
+business rules run with openpyxl and sqlite3 blocked.
+
+```bash
+./run_tests.sh   # lo mismo, buscando el venv solo
+```
+
+## Layers
+
+Three layers; Bronze/Silver/Gold does **not** apply here (prices are
+used as downloaded, with no cleaning stage producing a different
+dataset and no Gold aggregates — the data → signals → results flow is
+a pipeline, not a lakehouse, so forcing it would be labeling, not
+architecture):
+
+- **Client (presentation)** — `plots.py` (the charts) and
+  `examples/run_backtest.py` (the full run the user launches). They
+  never touch storage libraries directly.
+- **Business rules** — `signals.py` (the 50/200 rule) and
+  `backtester.py` (the execution engine with costs). Pure market
+  logic: no storage, no output formats.
+- **Queries & analysis** — `data.py` (download + local cache: the
+  data access), `metrics.py` (the strategy metrics) and
+  `validation.py` (in/out-of-sample and walk-forward), plus
+  `persistence.py`, `excel_export.py`, `tableau_extract.py` and
+  `pivot_table.py` (plus `sql/schema_access.sql` and `access/`). The
+  analysis here is Python — the strategy metrics — not SQL.
+
+## Guardar backtests: SQLite + Excel (nuevo)
+
+Un backtest que solo vive en un gráfico es un recuerdo, no un
+resultado. Ahora cada backtest queda guardado en SQLite
+(`persistence.py`) con sus operaciones (entrada, salida, rendimiento,
+si quedó abierta), su curva de equity día a día y sus métricas por
+periodo — y se exporta a Excel (`excel_export.py`) con tres hojas:
+métricas (estrategia contra buy-and-hold), operaciones y equity.
+Los NaN y los infinitos (como el profit factor cuando no hay
+operaciones perdedoras) se guardan como NULL, no como texto raro.
+
+```python
+from signal_backtester import persistence, excel_export
+
+bt_id = persistence.store_backtest(
+    "backtests.db", ticker="SPY", strategy="sma_crossover_50_200",
+    fast=50, slow=200, commission_bps=5.0, slippage_bps=5.0,
+    result=result, metrics_by_scope={"full_period": (metrics, bench)},
+    signal=signal,
+)
+excel_export.export_workbook("backtests.db", "backtest.xlsx")
+```
+
+## Tablas dinámicas y Access
+
+El Excel exportado trae dos tablas dinámicas nativas, no valores
+pegados: "Dinámica por resultado" agrupa las operaciones por si
+quedaron abiertas o cerradas, con el rendimiento promedio y el número
+de operaciones; "Dinámica por señal" agrupa los días por la señal
+que regía (0 = fuera del mercado, 1 = dentro), con el retorno diario
+promedio y el número de días. Son objetos pivotTable reales
+(definición + caché + registros dentro del .xlsx), así que Excel las
+recalcula al abrir. La comparación dentro/fuera es la pregunta
+física que importa: si el retorno promedio dentro no supera al de
+fuera, la señal no está capturando tendencia. Si un origen no tiene
+filas, ese pivote se salta sin romper la exportación.
+
+En `access/` está además la base real de Access
+(`signal-backtester.accdb`, formato ACE14): tablas `backtests`,
+`metrics`, `trades` y `equity_daily` con sus filas, construida con
+Jackcess desde SQLite y verificada con mdbtools. Se regenera con
+`bash access/build_access.sh backtests.db signal-backtester.accdb`
+(ver `access/README.md`). Los CSV de `access/csv/` y el esquema son
+el pack de importación en texto.
+
+## Tableau y Access: extractos, no integración (nuevo)
+
+Sin mentir: no hay conector con Tableau. Lo que hay es un CSV con la
+serie diaria (`tableau_extract.write_equity_csv`): precio ajustado,
+las dos medias móviles, la señal, la posición real y las dos curvas
+de equity — se importa en Tableau tal cual. Para Access ya no hace
+falta el esquema SQL de `sql/schema_access.sql`: la base `.accdb`
+real está en `access/` (ver la sección anterior). La idea del
+tablero: el precio con las medias encima, el equity de la estrategia
+contra buy-and-hold y la señal como fondo.
 
 ## Structure
 
@@ -156,12 +240,28 @@ quant-signal-backtester/
 │   ├── backtester.py    # long-only backtest, costs + slippage, no look-ahead
 │   ├── metrics.py       # CAGR, Sharpe, max drawdown, hit rate, profit factor
 │   ├── validation.py    # in-sample/out-of-sample + walk-forward
-│   └── plots.py         # equity, drawdown and signal charts
+│   ├── plots.py         # equity, drawdown and signal charts
+│   ├── persistence.py   # SQLite: backtests, métricas, trades, equity diaria
+│   ├── excel_export.py  # exporta un backtest a Excel (3 hojas + 2 pivotes)
+│   ├── pivot_table.py   # tablas dinámicas nativas de Excel
+│   └── tableau_extract.py  # CSV serie diaria, listo para Tableau
+├── access/               # .accdb real + CSV/schema + constructor Java
+│   ├── signal-backtester.accdb
+│   ├── dump_access.py
+│   ├── AccessBuilder.java
+│   └── build_access.sh
+├── sql/
+│   └── schema_access.sql   # DDL para Access (solo esquema, sin probar en Access)
 ├── tests/
 │   ├── test_signals.py
 │   ├── test_backtester.py
 │   ├── test_metrics.py
-│   └── test_data_validation.py
+│   ├── test_data_validation.py
+│   ├── test_persistence.py
+│   ├── test_excel_export.py
+│   ├── test_access.py
+│   └── test_tableau_extract.py
+├── run_tests.sh         # corre pytest buscando el venv
 ├── examples/
 │   └── run_backtest.py  # full run: backtest + validation + charts
 ├── data/

@@ -1,4 +1,6 @@
-"""Full run: 50/200-day SMA crossover on SPY, 2005-2025.
+"""
+Layer: Client (presentation) — the full run the user launches: data, signal, backtest, charts.
+Full run: 50/200-day SMA crossover on SPY, 2005-2025.
 
 Downloads (or loads the cached) SPY daily data, runs the full-period
 backtest with transaction costs and slippage, splits in-sample /

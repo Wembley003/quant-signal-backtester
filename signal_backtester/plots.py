@@ -1,4 +1,6 @@
-"""Charts for the backtest report."""
+"""
+Layer: Client (presentation) — the charts of a backtest.
+Charts for the backtest report."""
 
 import matplotlib
 
